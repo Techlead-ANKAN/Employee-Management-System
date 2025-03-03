@@ -18,6 +18,7 @@ function FailedTask({ data }) {
             tasks.push({
                 title: data.tasks[i].task_title,
                 priority: data.tasks[i].priority,
+                desc: data.tasks[i].task_description,
                 date: data.tasks[i].task_date,
                 color: "bg-cyan-500",
                 status: "In Progress"
@@ -47,7 +48,7 @@ function FailedTask({ data }) {
                                 </div>
                                 <h3 className='text-xl font-semibold mb-2'>{task.title}</h3>
                                 <p className='text-sm text-zinc-400 line-clamp-2 mb-4'>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+                                    {task.desc}
                                 </p>
                                 <div className='flex items-center justify-between'>
                                     <div className='flex items-center gap-2'>
