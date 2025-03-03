@@ -29,14 +29,16 @@
 // TaskListNumbers.jsx
 import { motion } from 'framer-motion';
 
-const stats = [
-  { label: 'New Tasks', value: 4, color: 'from-cyan-500 to-blue-600' },
-  { label: 'In Progress', value: 3, color: 'from-purple-500 to-fuchsia-600' },
-  { label: 'Completed', value: 1, color: 'from-green-500 to-emerald-600' },
-  { label: 'Overdue', value: 2, color: 'from-red-500 to-rose-600' },
-];
 
-function TaskListNumbers() {
+function TaskListNumbers({data}) {
+
+  const stats = [
+    { label: 'New Tasks', value: `${data.task_numbers.new_task}`, color: 'from-cyan-500 to-blue-600' },
+    { label: 'Active', value: `${data.task_numbers.active}`, color: 'from-purple-500 to-fuchsia-600' },
+    { label: 'Completed', value: `${data.task_numbers.completed}`, color: 'from-green-500 to-emerald-600' },
+    { label: 'Failed', value: `${data.task_numbers.failed}`, color: 'from-red-500 to-rose-600' },
+  ];
+
   return (
     <motion.div 
       className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'

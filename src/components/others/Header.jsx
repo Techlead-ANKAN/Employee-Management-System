@@ -14,7 +14,8 @@
 // Header.jsx
 import { motion } from 'framer-motion';
 
-function Header() {
+function Header({data}) {
+  console.log(data)
   return (
     <motion.div 
       initial={{ y: -20, opacity: 0 }}
@@ -26,7 +27,7 @@ function Header() {
           className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'
           whileHover={{ scale: 1.02 }}
         >
-          Welcome Back,<br/>Ankan
+          Welcome Back,<br/>{data.first_name}
         </motion.h1>
         <p className='text-zinc-400'>You have 8 tasks remaining</p>
       </div>

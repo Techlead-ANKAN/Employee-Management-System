@@ -23,7 +23,8 @@ import Header from '../others/Header';
 import TaskListNumbers from '../others/TaskListNumbers';
 import TaskList from '../TaskList/TaskList';
 
-function EmployeeDashboard() {
+function EmployeeDashboard({data}) {
+  console.log(data)
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -35,9 +36,9 @@ function EmployeeDashboard() {
       <div className='absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent opacity-10 blur-3xl' />
 
       <div className='relative container mx-auto p-6 xl:p-10 space-y-8'>
-        <Header />
-        <TaskListNumbers />
-        <TaskList />
+        <Header data={data}/>
+        <TaskListNumbers data={data}/>
+        <TaskList data={data}/>
       </div>
     </motion.div>
   )
