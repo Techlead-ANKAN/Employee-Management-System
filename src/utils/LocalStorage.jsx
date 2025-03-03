@@ -12,7 +12,7 @@ const employees = [
         "task_category": "Reporting",
         "priority": "High",
         "active": true,
-        "new_task": true,
+        "new_task": false,
         "completed": false,
         "failed": false
       },
@@ -22,14 +22,14 @@ const employees = [
         "task_date": "2025-03-02",
         "task_category": "Meetings",
         "priority": "Medium",
-        "active": true,
-        "new_task": false,
+        "active": false,
+        "new_task": true,
         "completed": false,
         "failed": false
       }
     ],
     "task_numbers": {
-      "active": 2,
+      "active": 1,
       "new_task": 1,
       "completed": 0,
       "failed": 0
@@ -48,7 +48,7 @@ const employees = [
         "task_category": "Development",
         "priority": "High",
         "active": true,
-        "new_task": true,
+        "new_task": false,
         "completed": false,
         "failed": false
       }
@@ -109,14 +109,14 @@ const employees = [
         "task_category": "Development",
         "priority": "High",
         "active": false,
-        "new_task": true,
+        "new_task": false,
         "completed": false,
         "failed": true
       }
     ],
     "task_numbers": {
       "active": 1,
-      "new_task": 1,
+      "new_task": 0,
       "completed": 0,
       "failed": 1
     }

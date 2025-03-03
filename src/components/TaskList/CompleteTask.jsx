@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { div } from 'framer-motion/client';
 import React from 'react'
 
 function CompleteTask({ data }) {
@@ -9,18 +8,16 @@ function CompleteTask({ data }) {
     }
 
     const tasks = [];
-    let completedTaskCount = data.task_numbers.completed;
+    let task_len = data.tasks.length;
+    let complete_tasks = data.task_numbers.completed;
 
-    // if (completedTaskCount == 0){
-    //     return <div><h2>No Completed tasks</h2></div>;
-    // }
 
-    for (let i = 0; i < completedTaskCount; i++) {
+    for (let i = 0; i < task_len; i++) {
         if (data.tasks[i].completed == true) {
             tasks.push({
                 title: data.tasks[i].task_title,
                 priority: data.tasks[i].priority,
-                date: data.tasks[i].date,
+                date: data.tasks[i].task_date,
                 color: "bg-cyan-500",
                 status: "In Progress"
             });
@@ -29,9 +26,9 @@ function CompleteTask({ data }) {
 
     return (
         <>
-            {completedTaskCount === 0 ? (<></>) : (
+            {complete_tasks === 0 ? (<></>) : (
                 <div>
-                    <h3 className='text-2xl font-bold text-white'>Completed Tasks</h3>
+                    <h3 className='text-2xl font-bold text-white mb-5'>Completed Tasks</h3>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
                         {tasks.map((task, index) => (
                             <motion.div

@@ -1,21 +1,17 @@
-// import React from 'react'
-
-// function Header() {
-//   return (
-//     <div className="flex items-end justify-between">
-//         <h1 className='text-2xl font-medium'>Hello <br/> <span className='text-3xl font-semibold'>Ankan</span></h1>
-//         <button className='bg-red-600 text-lg font-medium text-white px-5 py-2 rounded-small'>Logout</button>
-//     </div>
-//   )
-// }
-
-// export default Header
-
-// Header.jsx
+import React, {useState} from "react"
 import { motion } from 'framer-motion';
 
-function Header({data}) {
-  console.log(data)
+function Header() {
+  // console.log(data)
+
+  // const [username, setUsername] = useState("")
+
+  // if(!data){
+  //   setUsername("Admin")
+  // }else{
+  //   setUsername(data.first_name)
+  // }
+
   return (
     <motion.div 
       initial={{ y: -20, opacity: 0 }}
@@ -27,9 +23,8 @@ function Header({data}) {
           className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'
           whileHover={{ scale: 1.02 }}
         >
-          Welcome Back,<br/>{data.first_name}
+          Welcome Back,<br/>Admin
         </motion.h1>
-        <p className='text-zinc-400'>You have 8 tasks remaining</p>
       </div>
       
       <motion.button
