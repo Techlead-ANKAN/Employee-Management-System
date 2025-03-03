@@ -1,16 +1,23 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { motion } from 'framer-motion';
 
-function Header() {
-  // console.log(data)
+function Header({data}) {
+  console.log(data)
 
-  // const [username, setUsername] = useState("")
+  const [username, setUsername] = useState("")
 
-  // if(!data){
-  //   setUsername("Admin")
-  // }else{
-  //   setUsername(data.first_name)
-  // }
+  useEffect(() => {
+    if (!data) {
+      setUsername("Admin");
+    } else {
+      setUsername(data.first_name);
+    }
+  }, [data]);
+
+  const logOut = () => {
+    localStorage.setItem("loggedInUser", "")
+    window.location.reload();
+  }
 
   return (
     <motion.div 
@@ -23,11 +30,12 @@ function Header() {
           className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'
           whileHover={{ scale: 1.02 }}
         >
-          Welcome Back,<br/>Admin
+          Welcome Back,<br/>{username}
         </motion.h1>
       </div>
       
       <motion.button
+        onClick={logOut}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className='px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-700 rounded-xl font-semibold flex items-center gap-2 hover:shadow-cyan-glow'
