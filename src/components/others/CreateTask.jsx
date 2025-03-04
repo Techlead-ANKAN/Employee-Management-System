@@ -1,49 +1,22 @@
-// import React from 'react'
-
-// function CreateTask() {
-//     return (
-//         <div className='p-5 bg-[#1c1c1c] mt-7 rounded'>
-//             <form action="" className='flex flex-wrap w-full items-start justify-between '>
-//                 <div className='w-1/2'>
-//                     <div>
-//                         <h3 className='text-sm text-gray-300 mb-0.5'>Task Title</h3>
-//                         <input className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='make a ui design' />
-//                     </div>
-
-//                     <div>
-//                         <h3 className='text-sm text-gray-300 mb-0.5'>Date</h3>
-//                         <input className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="date" />
-//                     </div>
-
-//                     <div>
-//                         <h3 className='text-sm text-gray-300 mb-0.5'>Assign To</h3>
-//                         <input className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder="employee name" />
-//                     </div>
-
-//                     <div>
-//                         <h3 className='text-sm text-gray-300 mb-0.5'>Category</h3>
-//                         <input className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='design/dev/...' />
-//                     </div>
-//                 </div>
-
-//                 <div className='w-2/5 flex flex-col items-start'>
-//                     <h3 className='text-sm text-gray-300 mb-0.5'>Description</h3>
-//                     <textarea className='text-sm w-full h-44 py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' name="" id="" cols="30" rows="10" type="textarea" />
-//                     <button className='bg-emerald-500 py-3 hover:bgemerald-600 px-5 rounded text-sm mt-4 w-full'>Create Task</button>
-//                 </div>
-
-//             </form>
-//         </div>
-//     )
-// }
-
-// export default CreateTask
-
-
-// CreateTask.jsx
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-function CreateTask() {
+function CreateTask({ authData }) {
+
+
+  const emps = []
+  let str = ""
+  for (let i = 0; i < authData.employees.length; i++) {
+    str = `${authData.employees[i].id} - ${authData.employees[i].first_name}`;
+    emps.push(str)
+  }
+
+  const [targetEmp, setTargetEmp] = useState()
+
+  console.log(targetEmp)
+
+
+
   return (
     <motion.div
       initial={{ y: 20, opacity: 0 }}
@@ -86,11 +59,13 @@ function CreateTask() {
             transition={{ delay: 0.4 }}
           >
             <label className="block text-sm font-medium text-cyan-400 mb-2">Assign To</label>
-            <input
-              className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white placeholder-zinc-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all"
-              type="text"
-              placeholder="Select team member"
-            />
+            <select className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all" onChange={(e) => setTargetEmp(e.target.value)}>
+              <option value="" disabled selected>Choose an option</option>
+              {emps.map((employee, index) => (
+                <option key={index}>{employee}</option>
+              ))
+              }
+            </select>
           </motion.div>
 
           <motion.div
@@ -98,12 +73,13 @@ function CreateTask() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <label className="block text-sm font-medium text-cyan-400 mb-2">Category</label>
+            <label className="block text-sm font-medium text-cyan-400 mb-2">Priority</label>
             <select className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all">
-              <option>Design</option>
-              <option>Development</option>
-              <option>Marketing</option>
-              <option>Research</option>
+              <option value="" disabled selected>Choose an option</option>
+              <option>High</option>
+              <option>Critical</option>
+              <option>Medium</option>
+              <option>Low</option>
             </select>
           </motion.div>
         </div>

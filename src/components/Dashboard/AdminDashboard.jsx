@@ -21,7 +21,7 @@ function AdminDashboard() {
       
       <div className='relative container mx-auto p-6 xl:p-10 space-y-8'>
         <Header />
-        <CreateTask />
+        <CreateTask authData={authData}/>
         <AllTask authData={authData}/>
       </div>
       
