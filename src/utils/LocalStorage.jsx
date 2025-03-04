@@ -12,7 +12,7 @@ const employees = [
         "task_category": "Reporting",
         "priority": "High",
         "active": true,
-        "new_task": false,
+        "new_task": true,
         "completed": false,
         "failed": false
       },
@@ -55,7 +55,7 @@ const employees = [
     ],
     "task_numbers": {
       "active": 1,
-      "new_task": 1,
+      "new_task": 0,
       "completed": 0,
       "failed": 0
     }

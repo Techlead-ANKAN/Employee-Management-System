@@ -1,27 +1,14 @@
-// import React from 'react'
-// import Header from '../others/Header'
-// import CreateTask from '../others/CreateTask'
-// import AllTask from '../others/AllTask'
-
-// function AdminDashboard() {
-//   return (
-//     <div className='h-screen w-full p-10'>
-//       <Header />
-//       <CreateTask/>
-//       <AllTask/>
-//     </div>
-//   )
-// }
-
-// export default AdminDashboard
-
-// AdminDashboard.jsx
 import { motion } from 'framer-motion';
 import Header from '../others/Header';
 import CreateTask from '../others/CreateTask';
 import AllTask from '../others/AllTask';
+import { AuthContext } from '../../context/AuthProvider';
+import React, {useContext} from "react"
 
 function AdminDashboard() {
+
+  const authData = useContext(AuthContext)
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -35,7 +22,7 @@ function AdminDashboard() {
       <div className='relative container mx-auto p-6 xl:p-10 space-y-8'>
         <Header />
         <CreateTask />
-        <AllTask />
+        <AllTask authData={authData}/>
       </div>
       
       {/* Floating Orbs */}

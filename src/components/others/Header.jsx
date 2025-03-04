@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import { motion } from 'framer-motion';
 
 function Header({data}) {
-  console.log(data)
+  // console.log(data)
 
   const [username, setUsername] = useState("")
 
