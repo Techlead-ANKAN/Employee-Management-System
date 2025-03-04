@@ -5,6 +5,7 @@ import AdminDashboard from './components/Dashboard/AdminDashboard';
 import { setLocalStorage } from './utils/LocalStorage';
 import { getLocalStorage } from './utils/LocalStorage';
 import { AuthContext } from './context/AuthProvider';
+import Home from './components/Home/Home';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -47,6 +48,8 @@ function App() {
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
       {user === "admin" ? <AdminDashboard /> : (user == "employee" ? <EmployeeDashboard data={loggedInUserData}/> : null)}
+
+      {/* <Home /> */}
     </>
   );
 }
