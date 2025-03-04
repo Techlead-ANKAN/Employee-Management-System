@@ -1,4 +1,3 @@
-import
 import { motion } from 'framer-motion';
 import Header from '../others/Header';
 import TaskListNumbers from '../others/TaskListNumbers';
@@ -8,11 +7,7 @@ function EmployeeDashboard({data}) {
   console.log(data)
 
 
-  const [edata, setedata] = useState([])
 
-  useEffect(() => {
-    setedata(data)
-  }, [data])
 
   return (
     <motion.div

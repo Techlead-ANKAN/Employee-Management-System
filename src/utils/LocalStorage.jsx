@@ -72,16 +72,16 @@ const employees = [
         "task_date": "2025-03-01",
         "task_category": "Documentation",
         "priority": "Low",
-        "active": false,
+        "active": true,
         "new_task": false,
-        "completed": true,
+        "completed": false,
         "failed": false
       }
     ],
     "task_numbers": {
-      "active": 0,
+      "active": 1,
       "new_task": 0,
-      "completed": 1,
+      "completed": 0,
       "failed": 0
     }
   },
