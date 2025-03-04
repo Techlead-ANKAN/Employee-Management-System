@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { title } from 'framer-motion/client';
+import { useEffect, useState } from 'react';
 
 function CreateTask({ authData }) {
 
@@ -11,10 +12,26 @@ function CreateTask({ authData }) {
     emps.push(str)
   }
 
-  const [targetEmp, setTargetEmp] = useState()
 
-  console.log(targetEmp)
+  const [taskData, setTaskData] = useState({
+    title: '',
+    date: '',
+    assigned_to: '',
+    priority: '',
+    desc: '',
+  })
 
+  const createTaskHanlder = (e) => {
+    e.preventDefault()
+    console.log(taskData)
+    setTaskData({
+      title: '',
+      date: '',
+      assigned_to: '',
+      priority: '',
+      desc: '',
+    });
+  }
 
 
   return (
@@ -38,6 +55,8 @@ function CreateTask({ authData }) {
               className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white placeholder-zinc-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all"
               type="text"
               placeholder="Enter task title"
+              value={taskData.title}
+              onChange={(e) => { setTaskData({ ...taskData, title: e.target.value }) }}
             />
           </motion.div>
 
@@ -50,6 +69,8 @@ function CreateTask({ authData }) {
             <input
               className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white placeholder-zinc-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all"
               type="date"
+              value={taskData.date}
+              onChange={(e) => { setTaskData({ ...taskData, date: e.target.value }) }}
             />
           </motion.div>
 
@@ -59,7 +80,10 @@ function CreateTask({ authData }) {
             transition={{ delay: 0.4 }}
           >
             <label className="block text-sm font-medium text-cyan-400 mb-2">Assign To</label>
-            <select className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all" onChange={(e) => setTargetEmp(e.target.value)}>
+            <select className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all"
+              value={taskData.assigned_to}
+              onChange={(e) => { setTaskData({ ...taskData, assigned_to: e.target.value }) }}
+            >
               <option value="" disabled selected>Choose an option</option>
               {emps.map((employee, index) => (
                 <option key={index}>{employee}</option>
@@ -74,7 +98,11 @@ function CreateTask({ authData }) {
             transition={{ delay: 0.5 }}
           >
             <label className="block text-sm font-medium text-cyan-400 mb-2">Priority</label>
-            <select className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all">
+            <select className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all"
+              value={taskData.priority}
+              onChange={(e) => { setTaskData({ ...taskData, priority: e.target.value }) }}
+
+            >
               <option value="" disabled selected>Choose an option</option>
               <option>High</option>
               <option>Critical</option>
@@ -94,6 +122,8 @@ function CreateTask({ authData }) {
             <textarea
               className="w-full h-40 bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white placeholder-zinc-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all"
               placeholder="Task details..."
+              value={taskData.desc}
+              onChange={(e) => {setTaskData({...taskData, desc: e.target.value})}}
             />
           </motion.div>
 
@@ -101,6 +131,7 @@ function CreateTask({ authData }) {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="mt-6 bg-gradient-to-r from-cyan-600 to-blue-700 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-cyan-glow transition-all self-end"
+            onClick={(e) => {createTaskHanlder(e)}}
           >
             Create Task
           </motion.button>
