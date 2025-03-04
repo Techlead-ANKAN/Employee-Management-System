@@ -80,3 +80,133 @@ body{
 .animate-orb-float-delayed {
   animation: orb-float-delayed 30s ease-in-out infinite;
 }
+
+
+
+
+/* @keyframes holo-scan {
+  0% { mask-position: 0% 0%; }
+  100% { mask-position: 0% 100%; }
+}
+
+.animate-holo-scan {
+  mask-image: linear-gradient(to bottom, 
+    transparent 0%, 
+    white 20%, 
+    white 80%, 
+    transparent 100%
+  );
+  mask-size: 100% 200%;
+  animation: holo-scan 4s linear infinite;
+}
+
+.shadow-cyber-glow {
+  filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.5))
+          drop-shadow(0 0 30px rgba(59, 130, 246, 0.3));
+} */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes scan-beam {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes moving-wave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes radar-ping {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.5); }
+}
+
+@keyframes holo-scan {
+  0% { mask-position: 0% 0%; }
+  100% { mask-position: 0% 100%; }
+}
+
+@keyframes neural-drift {
+  from { background-position: 0 0; }
+  to { background-position: 100% 100%; }
+}
+
+/* Utility Classes */
+.animate-float {
+  animation: float 6s infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s infinite -2s;
+}
+
+.animate-scan-beam {
+  animation: scan-beam 3s infinite;
+}
+
+.animate-moving-wave {
+  animation: moving-wave 8s linear infinite;
+}
+
+.animate-radar-ping {
+  animation: radar-ping 2s cubic-bezier(0,0,0.2,1) infinite;
+}
+
+.animate-holo-scan {
+  mask-image: linear-gradient(to bottom, transparent 0%, white 20%, white 80%, transparent 100%);
+  mask-size: 100% 200%;
+  animation: holo-scan 4s linear infinite;
+}
+
+.animate-neural-drift {
+  animation: neural-drift 20s linear infinite;
+}
+
+.bg-neural-pattern {
+  background-image: 
+    radial-gradient(circle at center, #06b6d410 0%, transparent 20%),
+    linear-gradient(45deg, #3b82f610 25%, transparent 25%),
+    linear-gradient(-45deg, #3b82f610 25%, transparent 25%);
+  background-size: 50px 50px;
+}
+
+.bg-fractal-noise {
+  background-image: 
+    repeating-linear-gradient(45deg, #000 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(-45deg, #000 0 1px, transparent 1px 3px);
+  background-size: 4px 4px;
+}
+
+@keyframes scan-beam-vertical {
+  0% { mask-position: 0 0; }
+  100% { mask-position: 0 100%; }
+}
+
+.animate-scan-beam-vertical {
+  mask-image: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(6,182,212,0.2) 10%,
+    transparent 20%
+  );
+  mask-size: 100% 200%;
+  animation: scan-beam-vertical 4s linear infinite;
+}
+
+@keyframes terminal-typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.animate-terminal-typing {
+  animation: terminal-typing 3s steps(40) infinite;
+}
