@@ -30,7 +30,7 @@ function App() {
     } 
     
     else if (authData) {
-      const employee = authData.employees.find((e) => email == e.email && password == e.password)
+      const employee = authData[0].find((e) => email == e.email && password == e.password)
       if(employee){
         setUser("employee");
         setLoggedInUserData(employee)
@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user === "admin" ? <AdminDashboard /> : (user == "employee" ? <EmployeeDashboard data={loggedInUserData}/> : null)}
+      {user === "admin" ? <AdminDashboard changeUser={setUser} /> : (user == "employee" ? <EmployeeDashboard changeUser={setUser} data={loggedInUserData}/> : null)}
 
       {/* <Home /> */}
     </>

@@ -6,8 +6,8 @@ import FailedTask from "./FailedTask";
 function TaskList({ data }) {
   return (
     <div className='space-y-6'>
-      <ActiveTask data = {data}/>
       <NewTask data={data}/>
+      <ActiveTask data = {data}/>
       <CompleteTask data={data}/>
       <FailedTask data={data}/>
     </div>

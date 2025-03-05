@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
 
-function AllTask({ authData }) {
-  const [employeesData, setEmployeesData] = useState([]);
+function AllTask( {authData} ) {
+  // const [employeesData, setEmployeesData] = useState([]);
 
-  useEffect(() => {
-    setEmployeesData(authData.employees);
-  }, [authData]);
+  // console.log("AllTask: ", authData)
+
+  // useEffect(() => {
+  //   setEmployeesData(authData);
+  // }, [authData]);
+
+  // console.log("emp: ", employeesData.authData)
+
+  console.log(authData)
+
+
 
   return (
     <motion.div
@@ -29,7 +37,7 @@ function AllTask({ authData }) {
             </tr>
           </thead>
           <tbody>
-            {employeesData.map((employee) => (
+            {authData.map((employee) => (
               <tr 
                 key={employee.id}
                 className="hover:bg-zinc-800/20 transition-colors"

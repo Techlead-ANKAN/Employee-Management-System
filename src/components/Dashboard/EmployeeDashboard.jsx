@@ -3,8 +3,8 @@ import Header from '../others/Header';
 import TaskListNumbers from '../others/TaskListNumbers';
 import TaskList from '../TaskList/TaskList';
 
-function EmployeeDashboard({data}) {
-  console.log(data)
+function EmployeeDashboard(props) {
+  // console.log(data)
 
 
 
@@ -20,9 +20,9 @@ function EmployeeDashboard({data}) {
       <div className='absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent opacity-10 blur-3xl' />
 
       <div className='relative container mx-auto p-6 xl:p-10 space-y-8'>
-        <Header data={data}/>
-        <TaskListNumbers data={data}/>
-        <TaskList data={data}/>
+        <Header changeUser={props.changeUser} data={props.data}/>
+        <TaskListNumbers data={props.data}/>
+        <TaskList data={props.data}/>
       </div>
     </motion.div>
   )

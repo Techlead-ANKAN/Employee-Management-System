@@ -25,7 +25,7 @@ function ActiveTask({ data }) {
         }
     }
 
-    console.log(data.tasks[0].task_date)
+    // console.log("Active: ",data)
 
     return (
         <>
@@ -35,7 +35,7 @@ function ActiveTask({ data }) {
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
                         {tasks.map((task, index) => (
                             <motion.div
-                                key={task.title}
+                                key={task.id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}

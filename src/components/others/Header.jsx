@@ -1,22 +1,22 @@
 import React, {useState, useEffect} from "react"
 import { motion } from 'framer-motion';
 
-function Header({data}) {
+function Header(props) {
   // console.log(data)
 
   const [username, setUsername] = useState("")
 
   useEffect(() => {
-    if (!data) {
+    if (!props.data) {
       setUsername("Admin");
     } else {
-      setUsername(data.first_name);
+      setUsername(props.data.first_name);
     }
-  }, [data]);
+  }, [props.data]);
 
   const logOut = () => {
-    localStorage.setItem("loggedInUser", "")
-    window.location.reload();
+    localStorage.setItem("loggedInUser", "");
+    props.changeUser("")
   }
 
   return (

@@ -1,37 +1,85 @@
 import { motion } from 'framer-motion';
-import { title } from 'framer-motion/client';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
+import {AuthContext} from "../../context/AuthProvider"
 
-function CreateTask({ authData }) {
+function CreateTask() {
 
+  const [userData, setUserData] = useContext(AuthContext)
+  // console.log("Checking: ", userData.employees.length)
 
   const emps = []
   let str = ""
-  for (let i = 0; i < authData.employees.length; i++) {
-    str = `${authData.employees[i].id} - ${authData.employees[i].first_name}`;
+  for (let i = 0; i < userData.length; i++) {
+    str = `${userData[i].first_name}`;
     emps.push(str)
   }
-
-
+  
+  
   const [taskData, setTaskData] = useState({
-    title: '',
-    date: '',
+    task_title: '',
+    task_date: '',
     assigned_to: '',
     priority: '',
-    desc: '',
+    task_description: '',
+    active: false,
+    new_task: true,
+    completed: false,
+    failed: false
   })
+  
+  // const createTaskHandler = (e) => {
+  //   e.preventDefault()
+    
+  //   const data = userData
+  //   console.log(data)
 
-  const createTaskHanlder = (e) => {
+  //   data.forEach(function(emp){
+  //     if(taskData.assigned_to == emp.first_name){
+  //       emp.tasks.push(taskData);
+  //       emp.task_numbers.new_task = emp.task_numbers.new_task+1;
+  //     }
+  //   })
+  //   setUserData(taskData)
+
+
+  //   setTaskData({
+  //     title: '',
+  //     date: '',
+  //     assigned_to: '',
+  //     priority: '',
+  //     desc: '',
+  //     active: true,
+  //     new_task: true,
+  //     completed: false,
+  //     failed: false
+  //   });
+  // }
+
+  const createTaskHandler = (e) => {
     e.preventDefault()
-    console.log(taskData)
+  
+    const updatedUserData = userData.map((emp) => {
+      if (emp.first_name === taskData.assigned_to) {
+        emp.tasks.push(taskData);
+        emp.task_numbers.new_task = emp.task_numbers.new_task + 1;
+      }
+      return emp;
+    });
+  
+    setUserData(updatedUserData);
+  
     setTaskData({
-      title: '',
-      date: '',
+      task_title: '',
+      task_date: '',
       assigned_to: '',
       priority: '',
-      desc: '',
+      task_description: '',
+      active: false,
+      new_task: true,
+      completed: false,
+      failed: false
     });
-  }
+  };
 
 
   return (
@@ -57,6 +105,7 @@ function CreateTask({ authData }) {
               placeholder="Enter task title"
               value={taskData.title}
               onChange={(e) => { setTaskData({ ...taskData, title: e.target.value }) }}
+              required
             />
           </motion.div>
 
@@ -71,6 +120,7 @@ function CreateTask({ authData }) {
               type="date"
               value={taskData.date}
               onChange={(e) => { setTaskData({ ...taskData, date: e.target.value }) }}
+              required
             />
           </motion.div>
 
@@ -83,6 +133,7 @@ function CreateTask({ authData }) {
             <select className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all"
               value={taskData.assigned_to}
               onChange={(e) => { setTaskData({ ...taskData, assigned_to: e.target.value }) }}
+              required
             >
               <option value="" disabled selected>Choose an option</option>
               {emps.map((employee, index) => (
@@ -101,7 +152,7 @@ function CreateTask({ authData }) {
             <select className="w-full bg-zinc-800/30 border-2 border-cyan-500/20 rounded-lg py-3 px-4 text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/50 transition-all"
               value={taskData.priority}
               onChange={(e) => { setTaskData({ ...taskData, priority: e.target.value }) }}
-
+              required
             >
               <option value="" disabled selected>Choose an option</option>
               <option>High</option>
@@ -124,6 +175,7 @@ function CreateTask({ authData }) {
               placeholder="Task details..."
               value={taskData.desc}
               onChange={(e) => {setTaskData({...taskData, desc: e.target.value})}}
+              required
             />
           </motion.div>
 
@@ -131,7 +183,7 @@ function CreateTask({ authData }) {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="mt-6 bg-gradient-to-r from-cyan-600 to-blue-700 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-cyan-glow transition-all self-end"
-            onClick={(e) => {createTaskHanlder(e)}}
+            onClick={(e) => {createTaskHandler(e)}}
           >
             Create Task
           </motion.button>

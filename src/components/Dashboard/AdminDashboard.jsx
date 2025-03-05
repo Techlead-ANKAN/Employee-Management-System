@@ -5,9 +5,9 @@ import AllTask from '../others/AllTask';
 import { AuthContext } from '../../context/AuthProvider';
 import React, {useContext} from "react"
 
-function AdminDashboard() {
+function AdminDashboard(props) {
 
-  const authData = useContext(AuthContext)
+  const [userData, setUserData] = useContext(AuthContext)
 
   return (
     <motion.div
@@ -20,9 +20,9 @@ function AdminDashboard() {
       <div className='absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/05 to-transparent opacity-15' />
       
       <div className='relative container mx-auto p-6 xl:p-10 space-y-8'>
-        <Header />
-        <CreateTask authData={authData}/>
-        <AllTask authData={authData}/>
+        <Header changeUser={props.changeUser} />
+        <CreateTask />
+        <AllTask authData={userData}/>
       </div>
       
       {/* Floating Orbs */}
