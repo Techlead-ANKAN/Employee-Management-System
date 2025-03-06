@@ -16,7 +16,7 @@ function Header(props) {
 
   const logOut = () => {
     localStorage.setItem("loggedInUser", "");
-    props.changeUser("")
+    props.changeUser()
   }
 
   return (
