@@ -5,7 +5,6 @@ import {AuthContext} from "../../context/AuthProvider"
 function CreateTask() {
 
   const [userData, setUserData] = useContext(AuthContext)
-  // console.log("Checking: ", userData.employees.length)
 
   const emps = []
   let str = ""
