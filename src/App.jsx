@@ -10,14 +10,15 @@ import Home from './components/Home/Home';
 function App() {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null)
+  const [showLogin, setShowLogin] = useState(false);
 
   const authData = useContext(AuthContext);
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("loggedInUser", "")
+    const loggedInUser    = localStorage.getItem("loggedInUser   ", "")
     
-    if(loggedInUser){
-      const userData = JSON.parse(loggedInUser)
+    if(loggedInUser   ){
+      const userData = JSON.parse(loggedInUser   )
       setUser(userData.role)
       setLoggedInUserData(userData.data)
     }
@@ -26,30 +27,44 @@ function App() {
   const handleLogin = (email, password) => {
     if (email == "admin@me.com" && password == "123") {
       setUser("admin");
-      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }))
+      localStorage.setItem("loggedInUser   ", JSON.stringify({ role: "admin" }))
     } 
-    
     else if (authData) {
       const employee = authData[0].find((e) => email == e.email && password == e.password)
       if(employee){
         setUser("employee");
         setLoggedInUserData(employee)
-        localStorage.setItem("loggedInUser", JSON.stringify({ role: "employee" , data: employee}))
+        localStorage.setItem("loggedInUser   ", JSON.stringify({ role: "employee" , data: employee}))
       }
     } 
-    
     else {
       alert("Invalid Credentials");
     }
   };
 
+  const handleLogout = () => {
+    setUser(null);
+    setLoggedInUserData(null);
+    localStorage.removeItem("loggedInUser   ");
+    setShowLogin(false);
+  };
+
+  const handleGetStarted = () => {
+    setShowLogin(true);
+  };
 
   return (
     <>
-      {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user === "admin" ? <AdminDashboard changeUser={setUser} /> : (user == "employee" ? <EmployeeDashboard changeUser={setUser} data={loggedInUserData}/> : null)}
-
-      {/* <Home /> */}
+      {user === null && !showLogin ? 
+        <Home handleGetStarted={handleGetStarted} /> : 
+        user === null && showLogin ? 
+          <Login handleLogin={handleLogin} /> : 
+          user === "admin" ? 
+            <AdminDashboard changeUser   ={handleLogout} /> : 
+            user === "employee" ? 
+              <EmployeeDashboard changeUser   ={handleLogout} data={loggedInUserData}/> : 
+              null
+      }
     </>
   );
 }
