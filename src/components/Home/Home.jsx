@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({handleGetStarted}) => {
     // const navigate = useNavigate();
 
     return (
@@ -47,7 +47,7 @@ const Home = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => navigate('/login')}
+                            onClick={handleGetStarted}
                             className="relative overflow-hidden bg-gradient-to-r from-cyan-600 to-blue-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-2xl font-bold text-base md:text-lg hover:shadow-cyan-glow transition-all group mx-auto lg:mx-0"
                         >
                             <span className="relative z-10">Get Started</span>
